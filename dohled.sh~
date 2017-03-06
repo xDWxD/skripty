@@ -9,7 +9,7 @@ gb=`df -h | grep sda1 | awk -F " " '{print1}'`
 echo "Aktualni cas: "$cas >> /home/student/Plocha/skripty/index.html
 echo "Moje IP: "$ip >> /home/student/Plocha/skripty/index.html
 echo "Prijata data: "$rx >> /home/student/Plocha/skripty/index.html
-echo "Odeslana data: "$tx >> /home/student/Plocha/skripty/index.html
+echo "Odeslaná data: "$tx >> /home/student/Plocha/skripty/index.html
 echo "Pocet prihlasenych uzivatelu: "$log >> /home/student/Plocha/skripty/index.html
 echo "Kapacita disku: "$gb >> /home/student/Plocha/skripty/index.html
 
