@@ -1,4 +1,15 @@
 #! /bin/bash
+function PathSelectF
+{
+clear
+echo ""
+echo "Please write full path of your file"
+echo ""
+echo -n "> "
+read pathF
+MainMenu
+}
+
 function MainMenu
 {
 selection=
@@ -9,9 +20,11 @@ until [[ "$selection" > "0"] && ["$selection" < "4" ]]; do
 	echo "-- 1) Convert ------------------"
 	echo "-- 2) Effects ------------------"
 	echo "-- 3) Custom--------------------"
-	echo "-- 0) Exit ---------------------"
 	echo "--------------------------------"
 	echo "--------------------------------"
+	echo "------------------------ 0) Exit"
+	echo "$pathF"
+	echo $pathF | awk -F "." '{print $2}'
 	echo -n ">"
 	read selection
 	case $selection in
@@ -34,9 +47,9 @@ until [[ "$selection" > "0"] && ["$selection" < "4" ]]; do
 	echo "-- 1) Quality ------------------"
 	echo "-- 2) Resolution ---------------"
 	echo "-- 3) Rotation -----------------"
-	echo "-- 0) Back ---------------------"
 	echo "--------------------------------"
 	echo "--------------------------------"
+	echo "------------------------ 0) Back"
 	echo -n ">"
         read selection
         case $selection in
@@ -58,10 +71,11 @@ until [[ "$selection" > "0"] && ["$selection" < "4" ]]; do
 	echo "----------- EFFECTS ------------"
 	echo "-- 1) Charcoal -----------------"
 	echo "-- 2) Implode ------------------"
-	echo "-- 0) Back ---------------------"
 	echo "--------------------------------"
 	echo "--------------------------------"
 	echo "--------------------------------"
+	echo "------------------------ 0) Back"
+	echo -n ">"
 	read selection
         case $selection in
                 1) ConMenu ;;
@@ -81,10 +95,10 @@ until [[ "$selection" > "0"] && ["$selection" < "4" ]]; do
 	echo "----------- CONVERT ------------"
 	echo "-- 1) png->jpg -----------------"
 	echo "-- 2) jpg->png -----------------"
-	echo "-- 0) Back ---------------------"
 	echo "--------------------------------"
 	echo "--------------------------------"
 	echo "--------------------------------"
+	echo "------------------------ 0) Back"
 	echo -n ">"
 	read selection
         case $selection in
@@ -109,4 +123,4 @@ echo -n "Are u sure? y/n "
          esac
 }
 
-MainMenu
+PathSelectF
