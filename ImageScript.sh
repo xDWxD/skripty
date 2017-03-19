@@ -10,6 +10,26 @@ read pathF
 MainMenu
 }
 
+function PathSelectD
+{
+echo "PathD"
+exit
+}
+
+function TypeSelect
+{
+echo""
+echo "Please select directory(1) or file(2)"
+echo ""
+echo -n "> "
+read selection
+	case $selection in
+		1) PathSelectD ;;
+		2) PathSelectF ;;
+		*) TypeSelect ;;
+	esac
+}
+
 function MainMenu
 {
 selection=
@@ -123,4 +143,4 @@ echo -n "Are u sure? y/n "
          esac
 }
 
-PathSelectF
+TypeSelect
