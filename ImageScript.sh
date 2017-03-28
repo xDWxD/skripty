@@ -1,24 +1,19 @@
 #! /bin/bash
-function PathSelectF
+function PathSelect
 {
 clear
 echo ""
-echo "Please write full path of your file"
+echo "Please write full path to directory"
 echo ""
 echo -n "> "
 read pathF
+mkdir $pathF/Image
 MainMenu
 }
 
-function PathSelectD
+function TypeDF
 {
-echo "PathD"
-exit
-}
-
-function TypeSelect
-{
-echo""
+echo ""
 echo "Please select directory(1) or file(2)"
 echo ""
 echo -n "> "
@@ -28,6 +23,17 @@ read selection
 		2) PathSelectF ;;
 		*) TypeSelect ;;
 	esac
+}
+function TypeJP
+{
+echo ""
+echo "Please write name and type of your file"
+echo ""
+echo -n "> "
+read ftype
+fconv=$ftype | awk '{print $1;}'
+convert $pathF/$ftype $fconv.$ftype | awk -F "." '{print $2}'
+MainMenu
 }
 
 function MainMenu
@@ -44,11 +50,10 @@ until [[ "$selection" > "0"] && ["$selection" < "4" ]]; do
 	echo "--------------------------------"
 	echo "------------------------ 0) Exit"
 	echo "$pathF"
-	echo $pathF | awk -F "." '{print $2}'
 	echo -n ">"
 	read selection
 	case $selection in
-		1) ConMenu ;;
+		1) TypeJP ;;
 		2) EMenu ;;
 		3) CMenu ;;
 		0) sure ;;
@@ -73,7 +78,7 @@ until [[ "$selection" > "0"] && ["$selection" < "4" ]]; do
 	echo -n ">"
         read selection
         case $selection in
-                1) ConMenu ;;
+                1) MainMenu ;;
                 2) EMenu ;;
                 3) CMenu ;;
                 0) MainMenu ;;
@@ -98,31 +103,7 @@ until [[ "$selection" > "0"] && ["$selection" < "4" ]]; do
 	echo -n ">"
 	read selection
         case $selection in
-                1) ConMenu ;;
-                2) EMenu ;;
-                0) MainMenu ;;
-                *) echo "Please type 1-2 or 0"
-        esac
-done
-}
-
-function ConMenu
-{
-selection=
-until [[ "$selection" > "0"] && ["$selection" < "4" ]]; do
-	clear
-	echo "--------------------------------"
-	echo "----------- CONVERT ------------"
-	echo "-- 1) png->jpg -----------------"
-	echo "-- 2) jpg->png -----------------"
-	echo "--------------------------------"
-	echo "--------------------------------"
-	echo "--------------------------------"
-	echo "------------------------ 0) Back"
-	echo -n ">"
-	read selection
-        case $selection in
-                1) ConMenu ;;
+                1) TypeJP ;;
                 2) EMenu ;;
                 0) MainMenu ;;
                 *) echo "Please type 1-2 or 0"
@@ -143,4 +124,5 @@ echo -n "Are u sure? y/n "
          esac
 }
 
-TypeSelect
+
+PathSelect
