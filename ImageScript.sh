@@ -26,13 +26,32 @@ read selection
 }
 function TypeJP
 {
+clear
 echo ""
 echo "Please write name and type of your file"
 echo ""
 echo -n "> "
 read ftype
-fconv=$ftype | awk '{print $1;}'
-convert $pathF/$ftype $fconv.$ftype | awk -F "." '{print $2}'
+selection=
+until [[ "$selection" > "0"] && ["$selection" < "4" ]]; do
+	clear
+	echo "--------------------------------"
+	echo "------------ TYPE --------------"
+	echo "-- 1) JPG ----------------------"
+	echo "-- 2) PNG ----------------------"
+	echo "--------------------------------"
+	echo "--------------------------------"
+	echo "--------------------------------"
+	echo "------------------------ 0) Exit"
+	echo -n ">"
+	read selection
+	case $selection in
+		1) convert $pathF/$ftype $pathF/Image/Con.png ;;
+		2) convert $pathF/$ftype $pathF/Image/Con.jpg ;;
+		0) MainMenu ;;
+		*) echo "Please type 1-3 or 0"
+	esac
+done
 MainMenu
 }
 
@@ -78,15 +97,124 @@ until [[ "$selection" > "0"] && ["$selection" < "4" ]]; do
 	echo -n ">"
         read selection
         case $selection in
-                1) MainMenu ;;
-                2) EMenu ;;
-                3) CMenu ;;
+                1) QType ;;
+                2) ResType ;;
+                3) RotType ;;
                 0) MainMenu ;;
                 *) echo "Please type 1-3 or 0"
         esac
 done
 }
 
+function ResType
+{
+clear
+echo ""
+echo "Please write name and type of your file"
+echo ""
+echo -n "> "
+read ftype
+clear
+echo ""
+echo "Please write deg to rotate"
+echo ""
+echo -n "> "
+read deg
+selection=
+until [[ "$selection" > "0"] && ["$selection" < "4" ]]; do
+	clear
+	echo "--------------------------------"
+	echo "------------ TYPE --------------"
+	echo "-- 1) JPG ----------------------"
+	echo "-- 2) PNG ----------------------"
+	echo "--------------------------------"
+	echo "--------------------------------"
+	echo "--------------------------------"
+	echo "------------------------ 0) Exit"
+	echo -n ">"
+	read selection
+	case $selection in
+		1) convert $pathF/$ftype -rotate $deg $pathF/Image/Charc$ftype ;;
+		2) convert $pathF/$ftype -rotate $deg $pathF/Image/Charc$ftype ;;
+		0) MainMenu ;;
+		*) echo "Please type 1-3 or 0"
+	esac
+done
+MainMenu
+}
+function RotType
+{
+clear
+echo ""
+echo "Please write name and type of your file"
+echo ""
+echo -n "> "
+read ftype
+clear
+echo ""
+echo "Please write deg to rotate"
+echo ""
+echo -n "> "
+read deg
+selection=
+until [[ "$selection" > "0"] && ["$selection" < "4" ]]; do
+	clear
+	echo "--------------------------------"
+	echo "------------ TYPE --------------"
+	echo "-- 1) JPG ----------------------"
+	echo "-- 2) PNG ----------------------"
+	echo "--------------------------------"
+	echo "--------------------------------"
+	echo "--------------------------------"
+	echo "------------------------ 0) Exit"
+	echo -n ">"
+	read selection
+	case $selection in
+		1) convert $pathF/$ftype -rotate $deg $pathF/Image/Charc$ftype ;;
+		2) convert $pathF/$ftype -rotate $deg $pathF/Image/Charc$ftype ;;
+		0) MainMenu ;;
+		*) echo "Please type 1-3 or 0"
+	esac
+done
+MainMenu
+}
+
+function QType
+{
+clear
+echo ""
+echo "Please write name and type of your file"
+echo ""
+echo -n "> "
+read ftype
+clear
+echo ""
+echo "Please write deg to rotate"
+echo ""
+echo -n "> "
+read deg
+selection=
+until [[ "$selection" > "0"] && ["$selection" < "4" ]]; do
+	clear
+	echo "--------------------------------"
+	echo "------------ TYPE --------------"
+	echo "-- 1) JPG ----------------------"
+	echo "-- 2) PNG ----------------------"
+	echo "--------------------------------"
+	echo "--------------------------------"
+	echo "--------------------------------"
+	echo "------------------------ 0) Exit"
+	echo -n ">"
+	read selection
+	case $selection in
+		1) convert $pathF/$ftype -rotate $deg $pathF/Image/Charc$ftype ;;
+		2) convert $pathF/$ftype -rotate $deg $pathF/Image/Charc$ftype ;;
+		0) MainMenu ;;
+		*) echo "Please type 1-3 or 0"
+	esac
+done
+MainMenu
+}
 function EMenu
 {
 selection=
@@ -103,14 +231,75 @@ until [[ "$selection" > "0"] && ["$selection" < "4" ]]; do
 	echo -n ">"
 	read selection
         case $selection in
-                1) TypeJP ;;
-                2) EMenu ;;
+                1) TypeEF ;;
+                2) TypeIM ;;
                 0) MainMenu ;;
                 *) echo "Please type 1-2 or 0"
         esac
 done
 }
 
+function TypeEF
+{
+clear
+echo ""
+echo "Please write name and type of your file"
+echo ""
+echo -n "> "
+read ftype
+selection=
+until [[ "$selection" > "0"] && ["$selection" < "4" ]]; do
+	clear
+	echo "--------------------------------"
+	echo "------------ TYPE --------------"
+	echo "-- 1) JPG ----------------------"
+	echo "-- 2) PNG ----------------------"
+	echo "--------------------------------"
+	echo "--------------------------------"
+	echo "--------------------------------"
+	echo "------------------------ 0) Exit"
+	echo -n ">"
+	read selection
+	case $selection in
+		1) convert $pathF/$ftype -charcoal 1 $pathF/Image/Charc$ftype ;;
+		2) convert $pathF/$ftype -charcoal 1 $pathF/Image/Charc$ftype ;;
+		0) MainMenu ;;
+		*) echo "Please type 1-3 or 0"
+	esac
+done
+MainMenu
+}
+
+function TypeIM
+{
+clear
+echo ""
+echo "Please write name and type of your file"
+echo ""
+echo -n "> "
+read ftype
+selection=
+until [[ "$selection" > "0"] && ["$selection" < "4" ]]; do
+	clear
+	echo "--------------------------------"
+	echo "------------ TYPE --------------"
+	echo "-- 1) JPG ----------------------"
+	echo "-- 2) PNG ----------------------"
+	echo "--------------------------------"
+	echo "--------------------------------"
+	echo "--------------------------------"
+	echo "------------------------ 0) Exit"
+	echo -n ">"
+	read selection
+	case $selection in
+		1) convert $pathF/$ftype -implode 1 $pathF/Image/Implo$ftype ;;
+		2) convert $pathF/$ftype -implode 1 $pathF/Image/Implo$ftype ;;
+		0) MainMenu ;;
+		*) echo "Please type 1-3 or 0"
+	esac
+done
+MainMenu
+}
 function sure
 {
 echo -n "Are u sure? y/n "
