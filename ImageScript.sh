@@ -116,10 +116,10 @@ echo -n "> "
 read ftype
 clear
 echo ""
-echo "Please write deg to rotate"
+echo "Please write resolution in %"
 echo ""
 echo -n "> "
-read deg
+read res
 selection=
 until [[ "$selection" > "0"] && ["$selection" < "4" ]]; do
 	clear
@@ -134,8 +134,8 @@ until [[ "$selection" > "0"] && ["$selection" < "4" ]]; do
 	echo -n ">"
 	read selection
 	case $selection in
-		1) convert $pathF/$ftype -rotate $deg $pathF/Image/Charc$ftype ;;
-		2) convert $pathF/$ftype -rotate $deg $pathF/Image/Charc$ftype ;;
+		1) convert $pathF/$ftype -resize $res $pathF/Image/Res$ftype ;;
+		2) convert $pathF/$ftype -resize $res $pathF/Image/Res$ftype ;;
 		0) MainMenu ;;
 		*) echo "Please type 1-3 or 0"
 	esac
@@ -189,10 +189,10 @@ echo -n "> "
 read ftype
 clear
 echo ""
-echo "Please write deg to rotate"
+echo "Please write value(%) for change quality"
 echo ""
 echo -n "> "
-read deg
+read qua
 selection=
 until [[ "$selection" > "0"] && ["$selection" < "4" ]]; do
 	clear
@@ -207,8 +207,8 @@ until [[ "$selection" > "0"] && ["$selection" < "4" ]]; do
 	echo -n ">"
 	read selection
 	case $selection in
-		1) convert $pathF/$ftype -rotate $deg $pathF/Image/Charc$ftype ;;
-		2) convert $pathF/$ftype -rotate $deg $pathF/Image/Charc$ftype ;;
+		1) convert $pathF/$ftype -resize $qua $pathF/Image/Qual$ftype ;;
+		2) convert $pathF/$ftype -resize $qua $pathF/Image/Qual$ftype ;;
 		0) MainMenu ;;
 		*) echo "Please type 1-3 or 0"
 	esac
